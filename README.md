@@ -76,7 +76,7 @@ HttpAgent.post("www.example.com/api/books")
                         }
                     });
 ```
-Any request can be finished with one of the following callbacks:
+Any request can be made with one of the following callbacks:
 ------
 
 Get a string results
