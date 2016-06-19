@@ -63,4 +63,82 @@ HttpAgent.put("www.example.com/api/books");
 HttpAgent.delete("www.example.com/api/books")
 ```
 
+Adding body is also simple...
+------
+```groovy
+HttpAgent.post("www.example.com/api/books")
+                    .queryParams("key_1","value_1","key_2","value_2","key_N","value_N")
+                    .withBody("{name:popapp ,age:27}")
+                    .goJsonArray(new JsonArrayCallback() {
+                        @Override
+                        protected void onDone(boolean b, JSONArray jsonArray) {
+
+                        }
+                    });
+```
+Any request can be finished with one of the following callbacks:
+------
+
+Get a string results
+------
+```groovy
+goString(new StringCallback() {
+                        @Override
+                        protected void onDone(boolean success, String results) {
+                            
+                        }
+                    })
+```
+
+Get Json results
+------
+```groovy
+goJson(new JsonCallback() {
+                        @Override
+                        protected void onDone(boolean success, JSONObject jsonObject) {
+                            
+                        }
+                    })
+```
+
+Get JsonArray results
+------
+```groovy
+goJsonArray(new JsonArrayCallback() {
+                        @Override
+                        protected void onDone(boolean b, JSONArray jsonArray) {
+
+                        }
+                    });
+```
+
+Get no results, Just send the request
+------
+```groovy
+go(new SuccessCallback() {
+                        @Override
+                        protected void onDone(boolean success) {
+                            
+                        }
+                    })
+```
+
+You also have access to those on any callback
+------
+```groovy
+HttpAgent.post("www.example.com/api/books")
+                    .queryParams("key_1","value_1","key_2","value_2","key_N","value_N")
+                    .withBody("{name:popapp ,age:27}")
+                    .goJson(new JsonCallback() {
+                        @Override
+                        protected void onDone(boolean success, JSONObject jsonObject) {
+                            getErrorMessage(); //returns error message if exists.
+                            getResponseCode(); // well, it's obvious...
+                            getStringResults(); // returns results as as string.
+                        }
+                    });
+```
+
+                    
+  
 
