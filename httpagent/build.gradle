@@ -1,4 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.studioidan.httpagent' // Change this to match your package name
+version = '1.0.3' // Change this to match your version number
 
 android {
     compileSdkVersion 23
@@ -22,4 +27,48 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
+}
+
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+task generateJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath()
+            .join(File.pathSeparator))
+}
+
+task generateJavadocsJar(type: Jar) {
+    from generateJavadocs.destinationDir
+    classifier 'javadoc'
+}
+
+generateJavadocsJar.dependsOn generateJavadocs
+
+artifacts {
+    archives generateJavadocsJar
+    archives generateSourcesJar
+}
+
+bintray {
+    user = 'studioidan'
+    key = 'c9a05cfc02f65062ce5081222833609747b0e3d3'
+    pkg {
+        repo = 'maven'
+        name = 'com.studioidan.httpagent'
+
+        version {
+            name = '1.0.3'
+            desc = 'Grate library for managing api calls'
+            released  = new Date()
+            vcsTag = '1.0.3'
+        }
+
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/studioidan/HttpAgent'
+        websiteUrl = 'https://github.com/studioidan/HttpAgent'
+    }
+    configurations = ['archives']
 }
