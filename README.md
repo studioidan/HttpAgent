@@ -5,12 +5,6 @@ Gradle
 ------
 ```groovy
 
-repositories {
-  maven {
-        url 'https://dl.bintray.com/studioidan/maven'
-    }
-}
-
 dependencies {
     compile 'com.studioidan.httpagent:httpagent:1.0.3@aar'
 }
