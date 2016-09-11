@@ -6,7 +6,7 @@ Gradle
 ```groovy
 
 dependencies {
-    compile 'com.studioidan.httpagent:httpagent:1.0.4@aar'
+    compile 'com.studioidan.httpagent:httpagent:1.0.5@aar'
 }
 
 ```
@@ -65,7 +65,7 @@ HttpAgent.post("www.example.com/api/books")
                     .withBody("{name:popapp ,age:27}")
                     .goJsonArray(new JsonArrayCallback() {
                         @Override
-                        protected void onDone(boolean b, JSONArray jsonArray) {
+                        protected void onDone(boolean success, JSONArray jsonArray) {
 
                         }
                     });
