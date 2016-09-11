@@ -5,14 +5,8 @@ Gradle
 ------
 ```groovy
 
-repositories {
-  maven {
-        url 'https://dl.bintray.com/studioidan/maven'
-    }
-}
-
 dependencies {
-    compile 'com.studioidan.httpagent:httpagent:1.0.1@aar'
+    compile 'com.studioidan.httpagent:httpagent:1.0.4@aar'
 }
 
 ```
@@ -75,6 +69,19 @@ HttpAgent.post("www.example.com/api/books")
 
                         }
                     });
+```
+
+Don't forget the headers...
+------
+```groovy
+HttpAgent.get("http://192.168.88.253/Video/inputs/channels/1")
+                        .headers("Authorization", "Basic YWRtaW46P3V5YFZhNzAw", "Content-Type", "application/json")
+                        .goString(new StringCallback() {
+                            @Override
+                            protected void onDone(boolean success, String stringResults) {
+                                Log.d(TAG, stringResults);
+                            }
+                        });
 ```
 Any request can be made with one of the following callbacks:
 ------
