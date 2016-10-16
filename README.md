@@ -1,5 +1,5 @@
 # HttpAgent
-A perfectically simple library to manage http requests.
+super simple library to manage http requests.
 
 Gradle
 ------
