@@ -6,7 +6,7 @@ Gradle
 ```groovy
 
 dependencies {
-    compile 'com.studioidan.httpagent:httpagent:1.0.5@aar'
+    compile 'com.studioidan.httpagent:httpagent:1.0.7@aar'
 }
 
 ```
