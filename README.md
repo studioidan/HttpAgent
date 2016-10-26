@@ -113,7 +113,7 @@ Get JsonArray results
 ```groovy
 goJsonArray(new JsonArrayCallback() {
                         @Override
-                        protected void onDone(boolean b, JSONArray jsonArray) {
+                        protected void onDone(boolean success, JSONArray jsonArray) {
 
                         }
                     });
