@@ -6,7 +6,7 @@ Gradle
 ```groovy
 
 dependencies {
-    compile 'com.studioidan.httpagent:httpagent:1.0.10@aar'
+    compile 'com.studioidan.httpagent:httpagent:1.0.11@aar'
 }
 
 ```
@@ -63,6 +63,20 @@ Adding body is also simple...
 HttpAgent.post("www.example.com/api/books")
                     .queryParams("key_1","value_1","key_2","value_2","key_N","value_N")
                     .withBody("{name:popapp ,age:27}")
+                    .goJsonArray(new JsonArrayCallback() {
+                        @Override
+                        protected void onDone(boolean success, JSONArray jsonArray) {
+
+                        }
+                    });
+```
+
+Or even more simple...
+------
+```groovy
+HttpAgent.post("www.example.com/api/books")
+                    .queryParams("key_1","value_1","key_2","value_2","key_N","value_N")
+                    .withBody("key_1","value_1","key_2","value_2","key_N","value_N") // will be converted to json
                     .goJsonArray(new JsonArrayCallback() {
                         @Override
                         protected void onDone(boolean success, JSONArray jsonArray) {
